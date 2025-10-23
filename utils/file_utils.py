@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 def read_names_from_csv(filepath: str) -> list[str]:
@@ -12,6 +13,9 @@ def read_names_from_csv(filepath: str) -> list[str]:
 		List[str]: A list of names loaded from the CSV file.
 	"""
 	names: list[str] = []
+	if not os.path.exists(filepath):
+		raise FileNotFoundError(f"The file '{filepath}' does not exist.")
+	
 	with open(filepath, mode="r", encoding="utf-8") as file:
 		reader = csv.reader(file)
 		for row in reader:
