@@ -1,8 +1,9 @@
 import csv
-from typing import List
+import json
+from utils.openspace import Openspace
 
 
-def read_names_from_csv(filepath: str) -> List[str]:
+def read_names_from_csv(filepath: str) -> list[str]:
 	"""
 	Read colleague names from a CSV file and return them as a list.
 
@@ -12,10 +13,35 @@ def read_names_from_csv(filepath: str) -> List[str]:
 	Returns:
 		List[str]: A list of names loaded from the CSV file.
 	"""
-	names: List[str] = []
+	names: list[str] = []
 	with open(filepath, mode="r", encoding="utf-8") as file:
 		reader = csv.reader(file)
 		for row in reader:
 			if len(row) > 0 and row[0].strip() != "":
 				names.append(row[0].strip())
 	return names
+
+
+def read_config(config_filepath: str) -> list[Openspace]:
+	"""
+	Read the room setup configuration from a JSON file and return a list of OpenSpace objects.
+
+	Args:
+		config_filepath (str): Path to the JSON configuration file.
+
+	Returns:
+		List[OpenSpace]: A list of OpenSpace instances created from the config file.
+	"""
+	with open(config_filepath, mode="r", encoding="utf-8") as file:
+		config_data = json.load(file)
+
+	open_spaces: list[Openspace] = []
+
+	for name, data in config_data.items():
+		tables = data.get("Tables", 0)
+		seats = data.get("Seats", 0)
+		guests_file = data.get("Guests", "")
+		open_space = Openspace(name=name, number_of_tables=tables, table_capacity=seats, guests_file=guests_file)
+		open_spaces.append(open_space)
+
+	return open_spaces

@@ -1,5 +1,5 @@
-from utils.file_utils import read_names_from_csv
-from utils.openspace import Openspace
+from utils.file_utils import read_config, read_names_from_csv
+
 
 
 def main() -> None:
@@ -7,29 +7,44 @@ def main() -> None:
 	Main function that runs the Open Space Organizer.
 
 	This function:
-	1. Reads colleague names from a CSV file.
-	2. Creates an OpenSpace with tables and seats.
-	3. Randomly assigns people to seats.
-	4. Saves the final seating plan to an output file.
-	5. Displays the results in the terminal.
+	1. Reads OpenSpace configurations from a JSON file.
+	2. For each configured OpenSpace:
+		- Loads the colleague names from the corresponding CSV file.
+		- Creates and organizes seating arrangements.
+	3. Stores all seating plans into a single output file.
+	4. Displays all the results in the terminal.
 	"""
-	input_filepath = "new_colleagues.csv"
+	config_filepath = "config.json"
 	output_filename = "output.csv"
 
-	# Step 1: Read all colleague names from the input CSV
-	names = read_names_from_csv(input_filepath)
+	# Step 1: Read all open space configurations
+	open_spaces = read_config(config_filepath)
 
-	# Step 2: Create an OpenSpace (6 tables × 4 seats)
-	open_space = Openspace(number_of_tables=6, table_capacity=4)
+	# Step 2: Open output file once to store all results together
+	with open(output_filename, "w", encoding="utf-8") as outfile:
+		
+		# Step 3: Loop through each OpenSpace from config
+		for open_space in open_spaces:
+			# Read the list of names for this open space
+			names = read_names_from_csv(open_space.guests_file)
 
-	# Step 3: Randomly assign colleagues to available seats
-	open_space.organize(names)
+			# Organize seating arrangement
+			open_space.organize(names)
 
-	# Step 4: Save the seating plan to a file
-	open_space.store(output_filename)
+			# Store each open space's data in the output file
+			outfile.write(f"===== {open_space.name.upper()} =====\n\n")
+			for i, table in enumerate(open_space.tables, start=1):
+				outfile.write(f"Table {i}:\n")
+				for j, seat in enumerate(table.seats, start=1):
+					status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}\n"
+					outfile.write(status)
+				outfile.write("\n")
+			outfile.write("===================================\n\n")
 
-	# Step 5: Display the assignments in the console
-	open_space.display()
+	# Step 4: Display the results in the console
+	for open_space in open_spaces:
+		print(f"\n=== {open_space.name.upper()} ===")
+		open_space.display()
 
 
 if __name__ == "__main__":

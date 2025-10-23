@@ -1,5 +1,4 @@
 import random
-from typing import List
 from utils.table import Table
 
 
@@ -13,7 +12,8 @@ class Openspace:
 		number_of_tables (int): The total number of tables.
 	"""
 
-	def __init__(self, number_of_tables: int, table_capacity: int) -> None:
+	def __init__(self, name:str ="BeCode", number_of_tables: int = 6, table_capacity: int = 4,
+			     guests_file:str = "new_colleagues.csv") -> None:
 		"""
 		Initialize an Openspace with a given number of tables and their seat capacity.
 
@@ -21,10 +21,12 @@ class Openspace:
 			number_of_tables (int): Number of tables in the open space.
 			table_capacity (int): Number of seats per table.
 		"""
+		self.name: str = name
 		self.number_of_tables: int = number_of_tables
-		self.tables: List[Table] = [Table(table_capacity) for _ in range(number_of_tables)]
+		self.tables: list[Table] = [Table(table_capacity) for _ in range(number_of_tables)]
+		self.guests_file:str = guests_file
 
-	def organize(self, names: List[str]) -> None:
+	def organize(self, names: list[str]) -> None:
 		"""
 		Randomly assign people to available seats across all tables.
 
@@ -44,7 +46,6 @@ class Openspace:
 		"""
 		Display the status of all tables and their occupants in a readable format.
 		"""
-		print("\n===== OPEN SPACE ORGANIZATION =====\n")
 		for i, table in enumerate(self.tables, start=1):
 			print(f"Table {i}:")
 			for j, seat in enumerate(table.seats, start=1):
