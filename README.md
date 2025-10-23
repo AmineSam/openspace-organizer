@@ -8,12 +8,11 @@ Your company moved to a new office at CEVI Ghent. Its an openspace with 6 tables
 
 This script runs everyday to re-assign everybody to a new seat.
 
-![coworking_img](https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGRpdmVyc2UlMjB0ZWFtfGVufDB8fDB8fHwy)
+<img width="700" height="1000" alt="Image" src="https://github.com/user-attachments/assets/5d22cdff-9cfa-42b3-b4f8-c3f86a06963d" />
 
 ## 📦 Repo structure
 
 ```
-.
 ├── utils/
 │   ├── openspace.py
 │   ├── table.py
