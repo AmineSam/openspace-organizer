@@ -1,3 +1,4 @@
+import os
 import csv
 import json
 from utils.openspace import Openspace
@@ -14,6 +15,10 @@ def read_names_from_csv(filepath: str) -> list[str]:
 		List[str]: A list of names loaded from the CSV file.
 	"""
 	names: list[str] = []
+	
+	if not os.path.exists(filepath):
+		raise FileNotFoundError(f"The file '{filepath}' does not exist.")
+	
 	with open(filepath, mode="r", encoding="utf-8") as file:
 		reader = csv.reader(file)
 		for row in reader:
@@ -32,6 +37,9 @@ def read_config(config_filepath: str) -> list[Openspace]:
 	Returns:
 		List[OpenSpace]: A list of OpenSpace instances created from the config file.
 	"""
+	if not os.path.exists(config_filepath):
+		raise FileNotFoundError(f"The file '{config_filepath}' does not exist.")
+	
 	with open(config_filepath, mode="r", encoding="utf-8") as file:
 		config_data = json.load(file)
 
