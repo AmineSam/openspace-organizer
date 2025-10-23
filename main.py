@@ -1,7 +1,6 @@
 from utils.file_utils import read_config, read_names_from_csv
 
 
-
 def main() -> None:
 	"""
 	Main function that runs the Open Space Organizer.
@@ -20,26 +19,16 @@ def main() -> None:
 	# Step 1: Read all open space configurations
 	open_spaces = read_config(config_filepath)
 
-	# Step 2: Open output file once to store all results together
+	# Step 2: Open the output file once for all OpenSpaces
 	with open(output_filename, "w", encoding="utf-8") as outfile:
-		
-		# Step 3: Loop through each OpenSpace from config
-		for open_space in open_spaces:
-			# Read the list of names for this open space
-			names = read_names_from_csv(open_space.guests_file)
 
-			# Organize seating arrangement
+		# Step 3: Loop through each configured OpenSpace
+		for open_space in open_spaces:
+			names = read_names_from_csv(open_space.guests_file)
 			open_space.organize(names)
 
-			# Store each open space's data in the output file
-			outfile.write(f"===== {open_space.name.upper()} =====\n\n")
-			for i, table in enumerate(open_space.tables, start=1):
-				outfile.write(f"Table {i}:\n")
-				for j, seat in enumerate(table.seats, start=1):
-					status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}\n"
-					outfile.write(status)
-				outfile.write("\n")
-			outfile.write("===================================\n\n")
+			# Store the results using the new centralized method
+			open_space.store(outfile)
 
 	# Step 4: Display the results in the console
 	for open_space in open_spaces:
