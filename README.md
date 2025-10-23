@@ -1,168 +1,86 @@
-# 🏢 OpenSpace Organizer
+# OpenSpace Organizer
 [![forthebadge made-with-python](https://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-## 📖 Description
 
-Your company moved to a new open space office with **6 tables of 4 seats each (24 colleagues total)**.  
-To help everyone get to know each other better, the team decided to **rotate seats every day** so that everyone sits with different colleagues.
+## 🏢 Description
 
-The **OpenSpace Organizer** automatically:
-- Reads your colleague names from a CSV file.
-- Randomly assigns each person to a table and seat.
-- Displays the arrangement clearly in the terminal.
-- Saves the seating plan to an `output.csv` file.
+Your company moved to a new office at CEVI Ghent. Its an openspace with 6 tables of 4 seats. As many of you are new colleagues, you come up with the idea of changing seats everyday and get to know each other better by working side by side with your new colleagues. 
+
+This script runs everyday to re-assign everybody to a new seat.
 
 ![coworking_img](https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGRpdmVyc2UlMjB0ZWFtfGVufDB8fDB8fHwy)
 
----
+## 📦 Repo structure
 
-## 📦 Folder Structure
-
-openspace-organizer/
-│
+```
+.
+├── utils/
+│   ├── openspace.py
+│   ├── table.py
+│   └── file_utils.py
+├── .gitignore
 ├── main.py
-└── utils/
-├── init.py
-├── file_utils.py
-├── openspace.py
-└── table.py
+├── new_colleagues.csv
+├── output.csv
+└── README.md
+```
 
-yaml
-Copy code
+## 🛎️ Usage
 
-- **main.py** → Entry point of the program.  
-- **utils/file_utils.py** → Handles CSV file reading and writing.  
-- **utils/table.py** → Contains `Seat` and `Table` classes for seat and table logic.  
-- **utils/openspace.py** → Contains the `Openspace` class that manages all tables.  
+1. Clone the repository to your local machine.
 
----
+2 .To run the script, you can execute the `main.py` file from your command line:
 
-## ⚙️ How It Works
+```
+   python main.py
+```
 
-1. **People** are read from a `.csv` file (`new_colleagues.csv`).
-2. **Seats & Tables** are represented by two classes:
-   - `Seat`: manages individual seat status and occupant.
-   - `Table`: manages a collection of seats.
-3. **OpenSpace** is a class that groups all tables and organizes everyone randomly.
-4. The resulting seating plan is displayed and stored for review.
+3. The script reads your input file, and organizes your colleagues to random seat assignments. The resulting seating plan is displayed in your console and also saved to an "output.csv" file in your root directory. 
 
----
+```python
+from utils.file_utils import read_names_from_csv
+from utils.openspace import Openspace
 
-## 🚀 Usage
 
-### 1️⃣ Install and Run
-
-```bash
-git clone https://github.com/<yourusername>/openspace-organizer.git
-cd openspace-organizer
-python main.py
-2️⃣ Input File Example
-new_colleagues.csv
-
-python-repl
-Copy code
-Alice
-Bob
-Charlie
-Diana
-Eve
-Frank
-...
-3️⃣ Output Example
-Console display:
-
-yaml
-Copy code
-===== OPEN SPACE ORGANIZATION =====
-
-Table 1:
-  Seat 1: Alice
-  Seat 2: Bob
-  Seat 3: Charlie
-  Seat 4: Diana
-
-Table 2:
-  Seat 1: Eve
-  Seat 2: Frank
-  Seat 3: Grace
-  Seat 4: Heidi
-...
-===================================
-Saved file: output.csv
-
-🧩 Code Overview
-python
-Copy code
 def main() -> None:
-    """
-    Main function that runs the Open Space Organizer.
-    """
-    input_filepath = "new_colleagues.csv"
-    output_filename = "output.csv"
+	"""
+	Main function that runs the Open Space Organizer.
 
-    # Step 1: Read all colleague names
-    names = read_names_from_csv(input_filepath)
+	This function:
+	1. Reads colleague names from a CSV file.
+	2. Creates an OpenSpace with tables and seats.
+	3. Randomly assigns people to seats.
+	4. Saves the final seating plan to an output file.
+	5. Displays the results in the terminal.
+	"""
+	input_filepath = "new_colleagues.csv"
+	output_filename = "output.csv"
 
-    # Step 2: Create an OpenSpace
-    open_space = Openspace(number_of_tables=6, table_capacity=4)
+	# Step 1: Read all colleague names from the input CSV
+	names = read_names_from_csv(input_filepath)
 
-    # Step 3: Assign colleagues randomly to seats
-    open_space.organize(names)
+	# Step 2: Create an OpenSpace (6 tables × 4 seats)
+	open_space = Openspace(number_of_tables=6, table_capacity=4)
 
-    # Step 4: Save and display results
-    open_space.store(output_filename)
-    open_space.display()
+	# Step 3: Randomly assign colleagues to available seats
+	open_space.organize(names)
+
+	# Step 4: Save the seating plan to a file
+	open_space.store(output_filename)
+
+	# Step 5: Display the assignments in the console
+	open_space.display()
+
 
 if __name__ == "__main__":
-    main()
-🧠 Code Style & Conventions
-Every class includes a __str__() method for readable output.
+	main()
+```
+## ⏱️ Timeline
 
-All functions and classes are typed using Python type hints.
+This project took two days for completion.
 
-Every function and class includes a proper docstring following this structure:
+## 📌 Personal Situation
+This project was done as part of the AI Boocamp at BeCode.org. 
 
-python
-Copy code
-def example_function(arg: str) -> int:
-    """
-    Brief description.
+Connect with me on [LinkedIn](https://www.linkedin.com/in/vriveraq/).
 
-    Args:
-        arg (str): description.
-
-    Returns:
-        int: description.
-    """
-Indentation uses tabs (Go-style formatting consistency).
-
-🧱 Example Open Space Layout
-A simplified visual representation of the 6 tables (4 seats each):
-
-less
-Copy code
-+-----------+    +-----------+    +-----------+
-| Table 1   |    | Table 2   |    | Table 3   |
-| [1][2][3][4]   | [1][2][3][4]   | [1][2][3][4]   |
-+-----------+    +-----------+    +-----------+
-
-+-----------+    +-----------+    +-----------+
-| Table 4   |    | Table 5   |    | Table 6   |
-| [1][2][3][4]   | [1][2][3][4]   | [1][2][3][4]   |
-+-----------+    +-----------+    +-----------+
-⏱️ Timeline
-This project was completed in approximately 2 days.
-
-🧑‍💻 Author & Context
-This project was created as part of the AI Bootcamp at BeCode.org.
-
-Connect with me on LinkedIn.
-
-🏁 Future Improvements
-Add support for Excel (.xlsx) input/output.
-
-Create a CLI menu to reassign seats interactively.
-
-Build a GUI or web interface for daily randomization.
-
-Automate daily runs and email the seating plan automatically.
