@@ -1,6 +1,6 @@
 import random
 from typing import List
-from utils.table import Table, Seat
+from utils.table import Table
 
 
 
