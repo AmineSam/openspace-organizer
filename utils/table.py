@@ -1,5 +1,3 @@
-from typing import List
-
 class Seat:
 	"""
 	A class representing a single seat in the Open Space.
@@ -71,7 +69,7 @@ class Table:
 			capacity (int): The number of seats at the table.
 		"""
 		self.capacity: int = capacity
-		self.seats: List[Seat] = [Seat() for _ in range(capacity)]
+		self.seats: list[Seat] = [Seat() for _ in range(capacity)]
 
 	def has_free_spot(self) -> bool:
 		"""

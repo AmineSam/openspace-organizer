@@ -1,8 +1,7 @@
 import csv
-from typing import List
 
 
-def read_names_from_csv(filepath: str) -> List[str]:
+def read_names_from_csv(filepath: str) -> list[str]:
 	"""
 	Read colleague names from a CSV file and return them as a list.
 
@@ -12,7 +11,7 @@ def read_names_from_csv(filepath: str) -> List[str]:
 	Returns:
 		List[str]: A list of names loaded from the CSV file.
 	"""
-	names: List[str] = []
+	names: list[str] = []
 	with open(filepath, mode="r", encoding="utf-8") as file:
 		reader = csv.reader(file)
 		for row in reader:

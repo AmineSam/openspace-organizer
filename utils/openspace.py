@@ -1,5 +1,4 @@
 import random
-from typing import List
 from utils.table import Table
 
 
@@ -22,9 +21,9 @@ class Openspace:
 			table_capacity (int): Number of seats per table.
 		"""
 		self.number_of_tables: int = number_of_tables
-		self.tables: List[Table] = [Table(table_capacity) for _ in range(number_of_tables)]
+		self.tables: list[Table] = [Table(table_capacity) for _ in range(number_of_tables)]
 
-	def organize(self, names: List[str]) -> None:
+	def organize(self, names: list[str]) -> None:
 		"""
 		Randomly assign people to available seats across all tables.
 
