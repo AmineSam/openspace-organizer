@@ -51,12 +51,12 @@ def main() -> None:
 				break
 
 		if target is None:
-			print(f"❌ OpenSpace '{args.openspace}' not found in config.json.")
+			print(f"OpenSpace '{args.openspace}' not found in config.json.")
 			return
 
 		# Append to CSV, then let Openspace handle rebalancing + config update
 		append_name_to_csv(target.guests_file, new_name)
-		print(f"📄 Added '{new_name}' to {target.guests_file}")
+		print(f"Added '{new_name}' to {target.guests_file}")
 
 		target.add_colleague(new_name, config_filepath)
 
