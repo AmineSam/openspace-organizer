@@ -128,7 +128,7 @@ Table 6:<br>
 
 ## ⏱️ Timeline
 
-This project took 3 hours for completion.
+This project took 1 day for completion.
 
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 
