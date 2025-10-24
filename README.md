@@ -18,6 +18,9 @@ This project implements a Python script that automatically reassigns everyone to
 │   ├── openspace.py
 │   ├── table.py
 │   └── file_utils.py
+├── images/
+│   ├── introduction
+│   └── openspace_output
 ├── .gitignore
 ├── main.py
 ├── new_colleagues.csv
