@@ -44,8 +44,6 @@ def append_name_to_csv(filepath: str, name: str) -> None:
 		file.write(f"\n{name}")
 
 
-
-
 def read_config(config_filepath: str) :
 	"""
 	Read the room setup configuration from a JSON file and return a list of OpenSpace objects.
@@ -97,9 +95,9 @@ def update_config(config_filepath: str, openspace_name: str, tables: int, seats:
 	with open(config_filepath, mode="r", encoding="utf-8") as file:
 		data = json.load(file)
 
-	if openspace_name not in data:
-		# Create if not existing
-		data[openspace_name] = {}
+	# if openspace_name not in data:
+	# 	# Create if not existing
+	# 	data[openspace_name] = {}
 
 	data[openspace_name]["Tables"] = int(tables)
 	data[openspace_name]["Seats"] = int(seats)

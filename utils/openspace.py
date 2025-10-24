@@ -38,22 +38,42 @@ class Openspace:
 		self.tables: list[Table] = [Table(table_capacity) for _ in range(number_of_tables)]
 		self.guests_file: str = guests_file
 
-	def organize(self, names: list[str]) -> None:
+	def organize(self, names: list[str], config_filepath: str | None = None) -> None:
 		"""
-		Randomly assign people to available seats across all tables.
+		Randomly assign people to tables and distribute them evenly, 
+		avoiding single-person tables. Optionally updates the config file.
+		"""
+		if not names:
+			return
 
-		Args:
-			names (list[str]): List of people to assign to seats.
-		"""
-		
+		# Compute balanced table sizes (e.g. [4, 4, 3, 3])
+		distribution = self._compute_distribution(len(names))
+
+		# Recreate tables to match the new balanced layout
+		self.tables = [Table(self.table_capacity) for _ in distribution]
+		self.number_of_tables = len(self.tables)
+
+		# Shuffle names for randomness
 		random.shuffle(names)
+
+		# Assign names evenly across the tables
 		index = 0
-		for table in self.tables:
-			while table.has_free_spot() and index < len(names):
-				table.assign_seat(names[index])
-				index += 1
-			if index >= len(names):
-				break
+		for table_size, table in zip(distribution, self.tables):
+			for _ in range(table_size):
+				if index < len(names):
+					table.assign_seat(names[index])
+					index += 1
+
+		# Optionally update config.json to persist new layout
+		if config_filepath:
+			update_config(
+				config_filepath=config_filepath,
+				openspace_name=self.name,
+				tables=self.number_of_tables,
+				seats=self.table_capacity,
+				guests_file=self.guests_file,
+			)
+
 
 	def _min_allowed_for_capacity(self) -> int:
 		"""
@@ -94,7 +114,7 @@ class Openspace:
 			return []
 
 		# Start from minimal number of tables to not exceed max capacity
-		tables = max(1, math.ceil(total_people / C))
+		tables = math.ceil(total_people / C)
 
 		# If resulting base size is less than min allowed (i.e. people would end up alone),
 		# reduce the table count to increase per-table size, as long as tables > 1.
@@ -146,12 +166,12 @@ class Openspace:
 		# Rebalance all seats evenly based on total names
 		self._rebuild_tables_and_assign(names)
 
-		# ✅ Refresh local attributes after rebalance (important if changed)
+		# Refresh local attributes after rebalance (important if changed)
 		self.number_of_tables = len(self.tables)
 		if self.tables:
 			self.table_capacity = len(self.tables[0].seats)
 
-		# ✅ Update config.json to reflect the new layout and guest file
+		# Update config.json to reflect the new layout and guest file
 		update_config(
 			config_filepath=config_filepath,
 			openspace_name=self.name,
