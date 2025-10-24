@@ -176,6 +176,24 @@ The program:
 
 ### 🪑 Visuals
 
+Running the default  python main.py
+
+<img width="585" height="842" alt="default_output" src="https://github.com/user-attachments/assets/aefe4814-0604-44ac-aa90-dee740060f14" />
+
+
+Adding Extra1 to Seniors openspace:
+
+<img width="1008" height="889" alt="adding_Extra1_output" src="https://github.com/user-attachments/assets/f1c7dd1a-575e-4bce-a0bc-b4d21af28855" />
+
+Adding Extra2 to Seniors openspace:
+
+<img width="1037" height="913" alt="adding_Extra2_output" src="https://github.com/user-attachments/assets/5fb042d3-2875-45ed-b789-31a550901ce4" />
+
+
+Adding Extra3 to Seniors openspace:
+
+<img width="1058" height="989" alt="adding_Extra3_output" src="https://github.com/user-attachments/assets/ddda0a3b-6543-4b42-b606-e6cbce174702" />
+
 
 ## ⏱️ Timeline
 
