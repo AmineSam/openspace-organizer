@@ -8,6 +8,21 @@ BeCode has recently moved to a new office at CEVI Ghent, featuring an open works
 
 This project implements a Python script that automatically reassigns everyone to a new seat every day. The script ensures that seating arrangements are randomized while maintaining balanced distribution across tables, encouraging collaboration and interaction among all students.
 
+This verions is an interactive version designed to organize people into tables dynamically within an open space, ensuring balanced seating and smooth handling of new arrivals.
+
+The OpenSpace Organizer automatically assigns people to tables based on configurable rules and seat capacities.
+It ensures:
+
+Even distribution of colleagues between tables 🪑
+
+No lonely seats 👤
+
+Automatic configuration updates 🔄
+
+CSV persistence for every OpenSpace 💾
+
+Dynamic addition of new colleagues directly from the command line ⚡
+
 <img width="700" height="1000" alt="Image" src="https://github.com/user-attachments/assets/5d22cdff-9cfa-42b3-b4f8-c3f86a06963d" />
 
 ## 📦 Repo structure
@@ -23,16 +38,65 @@ This project implements a Python script that automatically reassigns everyone to
 │   └── openspace_output
 ├── .gitignore
 ├── main.py
+├── config.json
 ├── new_colleagues.csv
 ├── output.csv
 └── README.md
 ```
 
-## 🛎️ Usage
+## ⚙️ How It Works
+
+1. Configuration (config.json)
+
+- Defines the number of tables, seats per table, and CSV files for each OpenSpace.
+
+- Example:
+
+```
+{
+  "openspaces": [
+    {
+      "name": "Seniors",
+      "tables": 6,
+      "seats": 4,
+      "guests_file": "seniors.csv"
+    },
+    {
+      "name": "Juniors",
+      "tables": 6,
+      "seats": 4,
+      "guests_file": "juniors.csv"
+    }
+  ]
+}
+
+```
+
+2. Automatic Organization
+
+- The program reads the config and corresponding CSV files.
+
+- It balances people evenly across tables, avoiding single-person tables.
+
+- Example distribution for 14 people with 4-seat tables:
+
+
+```
+   Distribution: [4, 4, 3, 3]
+```
+2. CSV & Config Updates
+
+- When a new colleague joins or a table is added, the program updates:
+
+- The respective .csv file (guest list)
+
+- The config.json file (number of tables, seats, etc.)
+
+
 
 1. Clone the repository to your local machine.
 
-2 .To run the script, you can execute the `main.py` file from your command line:
+2. To run the script, you can execute the `main.py` file from your command line:
 
 ```
    python main.py
