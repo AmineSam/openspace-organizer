@@ -65,7 +65,7 @@ def main() -> None:
 	# Whether CLI or Default mode → write full output (for all OpenSpaces)
 	with open(output_filename, "w", encoding="utf-8") as outfile:
 		for open_space in open_spaces:
-			# ✅ Only reorganize if we did NOT already rebalance this one
+			# Only reorganize if we did NOT already rebalance this one
 			if not (args.add_colleague and args.openspace and open_space.name.strip().lower() == args.openspace.strip().lower()):
 				names = read_names_from_csv(open_space.guests_file)
 				open_space.organize(names)
