@@ -41,7 +41,7 @@ def main() -> None:
 	if args.add_colleague and args.openspace:
 		target_os_name = args.openspace.strip().lower()
 		new_name = args.add_colleague.strip()
-		print(f"🧩 CLI Mode: Adding '{new_name}' to '{args.openspace}'...\n")
+		print(f"CLI Mode: Adding '{new_name}' to '{args.openspace}'...\n")
 
 		# Find the matching OpenSpace
 		target_space: Openspace | None = None
