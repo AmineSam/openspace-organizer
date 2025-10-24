@@ -88,8 +88,6 @@ Each day, the program assigns everyone to a new seat across six tables with four
 
 The file "output.csv" :
 
-===== OPEN SPACE ORGANIZATION =====<br>
-<br>
 Table 1:<br>
   Seat 1: Pierrick<br>
   Seat 2: Astha<br>
@@ -126,7 +124,6 @@ Table 6:<br>
   Seat 3: Esra<br>
   Seat 4: Imran<br>
 
-===================================
 
 ## ⏱️ Timeline
 
