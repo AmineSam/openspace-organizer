@@ -60,15 +60,12 @@ class Openspace:
 			filename (str): The name of the file where the arrangement will be saved.
 		"""
 		with open(filename, "w", encoding="utf-8") as file:
-			file.write("===== OPEN SPACE ORGANIZATION =====\n\n")
 			for i, table in enumerate(self.tables, start=1):
 				file.write(f"Table {i}:\n")
 				for j, seat in enumerate(table.seats, start=1):
 					status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}\n"
 					file.write(status)
 				file.write("\n")
-			file.write("===================================\n")
-
 	def __str__(self) -> str:
 		"""
 		Return a formatted string summary of the Open Space.
