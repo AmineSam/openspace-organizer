@@ -85,43 +85,43 @@ Each day, the program assigns everyone to a new seat across six tables with four
 
 The file "output.csv" :
 
-===== OPEN SPACE ORGANIZATION =====
+===== OPEN SPACE ORGANIZATION =====<br>
+<br>
+Table 1:<br>
+  Seat 1: Pierrick<br>
+  Seat 2: Astha<br>
+  Seat 3: Viktor<br>
+  Seat 4: Frédéric<br>
 
-Table 1:
-  Seat 1: Pierrick
-  Seat 2: Astha
-  Seat 3: Viktor
-  Seat 4: Frédéric
+Table 2:<br>
+  Seat 1: Amine<br>
+  Seat 2: Hamideh<br>
+  Seat 3: Nancy<br>
+  Seat 4: Welederufeal<br>
 
-Table 2:
-  Seat 1: Amine
-  Seat 2: Hamideh
-  Seat 3: Nancy
-  Seat 4: Welederufeal
+Table 3:<br>
+  Seat 1: Faranges<br>
+  Seat 2: Kristin<br>
+  Seat 3: Aleksei<br>
+  Seat 4: Tim<br>
 
-Table 3:
-  Seat 1: Faranges
-  Seat 2: Kristin
-  Seat 3: Aleksei
-  Seat 4: Tim
+Table 4:<br>
+  Seat 1: Brigitta<br>
+  Seat 2: Intan K.<br>
+  Seat 3: Jens<br>
+  Seat 4: Héloïse<br>
 
-Table 4:
-  Seat 1: Brigitta
-  Seat 2: Intan K.
-  Seat 3: Jens
-  Seat 4: Héloïse
+Table 5:<br>
+  Seat 1: Živile<br>
+  Seat 2: Michiel<br>
+  Seat 3: Sandrine<br>
+  Seat 4: Anna<br>
 
-Table 5:
-  Seat 1: Živile
-  Seat 2: Michiel
-  Seat 3: Sandrine
-  Seat 4: Anna
-
-Table 6:
-  Seat 1: Bryan
-  Seat 2: Ena
-  Seat 3: Esra
-  Seat 4: Imran
+Table 6:<br>
+  Seat 1: Bryan<br>
+  Seat 2: Ena<br>
+  Seat 3: Esra<br>
+  Seat 4: Imran<br>
 
 ===================================
 
