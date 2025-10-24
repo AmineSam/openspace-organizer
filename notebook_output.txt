@@ -1,0 +1,36 @@
+Table 1:
+  Seat 1: Tim
+  Seat 2: Viktor
+  Seat 3: Jens
+  Seat 4: Nancy
+
+Table 2:
+  Seat 1: Kristin
+  Seat 2: Héloïse
+  Seat 3: Intan K.
+  Seat 4: Živile
+
+Table 3:
+  Seat 1: Hamideh
+  Seat 2: Bryan
+  Seat 3: Sandrine
+  Seat 4: Pierrick
+
+Table 4:
+  Seat 1: Michiel
+  Seat 2: Frédéric
+  Seat 3: Esra
+  Seat 4: Faranges
+
+Table 5:
+  Seat 1: Amine
+  Seat 2: Imran
+  Seat 3: Brigitta
+  Seat 4: Ena
+
+Table 6:
+  Seat 1: Welederufeal
+  Seat 2: Astha
+  Seat 3: Aleksei
+  Seat 4: Anna
+
