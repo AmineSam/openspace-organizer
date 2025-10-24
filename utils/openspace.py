@@ -39,18 +39,52 @@ class Openspace:
 			if index >= len(names):
 				break
 
+	# def display(self) -> None:
+	# 	"""
+	# 	Display the status of all tables and their occupants in a readable format.
+	# 	"""
+		
+	# 	for i, table in enumerate(self.tables, start=1):
+	# 		print(f"Table {i}:")
+	# 		for j, seat in enumerate(table.seats, start=1):
+	# 			status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}"
+	# 			print(status)
+	# 		print()  # Blank line between tables
+
 	def display(self) -> None:
 		"""
-		Display the status of all tables and their occupants in a readable format.
+		Display all 6 tables (4 seats each) in a visual rectangular layout.
+		The table name appears centered inside the rectangle,
+		and seats are evenly spaced around it.
 		"""
-		
+
+		print("OPEN SPACE SEATING ARRANGEMENT\n")
+
 		for i, table in enumerate(self.tables, start=1):
-			print(f"Table {i}:")
-			for j, seat in enumerate(table.seats, start=1):
-				status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}"
-				print(status)
-			print()  # Blank line between tables
-		
+
+			# Ensure layout only runs for 4 seats
+			if len(table.seats) != 4:
+				continue
+
+			# Extract occupant names (or 'Free')
+			s = [seat.occupant if not seat.free else "Free" for seat in table.seats]
+
+			# Layout:
+			#   [Seat1]          [Seat2]
+			#         +-------------+
+			#         |   Table i   |
+			#         +-------------+
+			#   [Seat3]          [Seat4]
+
+			top_row = f"  [{s[0]:^8}]          [{s[1]:^8}]"
+			table_box = f"        +-------------+\n        |  Table {i:^3}  |\n        +-------------+"
+			bottom_row = f"  [{s[2]:^8}]          [{s[3]:^8}]"
+
+			print(top_row)
+			print(table_box)
+			print(bottom_row)
+			print("\n" + " " * 2 + "-" * 44 + "\n")
+	
 
 	def store(self, filename: str) -> None:
 		"""
