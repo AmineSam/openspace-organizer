@@ -39,17 +39,6 @@ class Openspace:
 			if index >= len(names):
 				break
 
-	# def display(self) -> None:
-	# 	"""
-	# 	Display the status of all tables and their occupants in a readable format.
-	# 	"""
-		
-	# 	for i, table in enumerate(self.tables, start=1):
-	# 		print(f"Table {i}:")
-	# 		for j, seat in enumerate(table.seats, start=1):
-	# 			status = f"  Seat {j}: {'Free' if seat.free else seat.occupant}"
-	# 			print(status)
-	# 		print()  # Blank line between tables
 
 	def display(self) -> None:
 		"""
