@@ -133,4 +133,4 @@ This project took 1 day for completion.
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 
 
-Connect with me on [LinkedIn](https://www.linkedin.com/in/vriveraq/).
+Connect with me on [GitHub](https://github.com/AmineSam).
