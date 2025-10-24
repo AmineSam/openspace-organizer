@@ -125,6 +125,57 @@ Table 6:<br>
   Seat 3: Esra<br>
   Seat 4: Imran<br>
 
+## 🧩 OpenSpace Organizer — v2.0 (Branch: Feature/Adding_colleague)
+
+A Python tool to organize colleagues into balanced tables in an open space — now smarter and interactive.
+
+### ⚙️ Overview
+
+The program:
+
+- Reads configuration from config.json
+
+    Diffirent Openspaces, for each one get :number of tables, seats per table, and corresponding CSV guest lists.
+
+- Loads all OpenSpaces and distributes people evenly across tables.
+
+- Avoids empty or single-person tables using a seat-balancing algorithm.
+
+- Automatically updates config and CSV when changes occur.
+
+- Outputs the full seating plan to the console and output.csv.
+
+### 🚀 What’s New in v2.0
+
+- Balanced Distribution: Seats are evenly spread across tables.
+
+- Auto Config Update: Changes are saved to config.json.
+
+- Add via CLI:
+
+```
+   python main.py --add_colleague "John" --openspace "Seniors"
+```
+
+- Smart Rebalancing: Tables adjust dynamically to avoid empty or lonely ones.
+
+- Unified Output: All OpenSpaces shown and stored together.
+
+### ▶️ Run the Program
+
+- Generate seating plan
+
+```
+   python main.py
+```
+
+- Add a new colleague
+```
+   python main.py --add_colleague "Name" --openspace "Juniors"
+```
+
+### 🪑 Visuals
+
 
 ## ⏱️ Timeline
 
