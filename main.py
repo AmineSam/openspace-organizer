@@ -3,7 +3,6 @@ from utils.file_utils import (
 	read_config,
 	read_names_from_csv,
 	append_name_to_csv,
-	update_config,
 )
 from utils.openspace import Openspace
 
@@ -25,7 +24,7 @@ def main() -> None:
 	   - Use: python main.py --add_colleague "Name" --openspace "OpenSpace Juniors"
 	   - Adds the colleague to the given OpenSpace (CSV persistence),
 	     rebalances tables without lonely seats, updates config.json,
-	     then stores and displays the updated seating.
+	     then stores and displays all OpenSpaces (updated and others).
 	"""
 	parser = argparse.ArgumentParser(description="Open Space Organizer CLI")
 	parser.add_argument("--add_colleague", type=str, help="Name of the new colleague to add")
@@ -42,44 +41,42 @@ def main() -> None:
 	if args.add_colleague and args.openspace:
 		target_os_name = args.openspace.strip().lower()
 		new_name = args.add_colleague.strip()
+		print(f"🧩 CLI Mode: Adding '{new_name}' to '{args.openspace}'...\n")
 
-		target: Openspace | None = None
+		# Find the matching OpenSpace
+		target_space: Openspace | None = None
 		for os_obj in open_spaces:
-			# Names in config are keys like "OpenSpace Juniors" etc.
 			if os_obj.name.strip().lower() == target_os_name:
-				target = os_obj
+				target_space = os_obj
 				break
 
-		if target is None:
+		if target_space is None:
 			print(f"OpenSpace '{args.openspace}' not found in config.json.")
 			return
 
-		# Append to CSV, then let Openspace handle rebalancing + config update
-		append_name_to_csv(target.guests_file, new_name)
-		print(f"Added '{new_name}' to {target.guests_file}")
+		# Append new colleague to the right CSV
+		append_name_to_csv(target_space.guests_file, new_name)
+		print(f"Added '{new_name}' to {target_space.guests_file}")
 
-		target.add_colleague(new_name, config_filepath)
+		# Rebalance that OpenSpace
+		target_space.add_colleague(new_name, config_filepath)
+		print(f"Rebalanced {target_space.name} successfully.\n")
 
-		# Store only this OpenSpace to the output file (overwrite)
-		with open(output_filename, "w", encoding="utf-8") as outfile:
-			target.store(outfile)
-
-		print(f"\n=== {target.name.upper()} ===")
-		target.display()
-		print(f"🪑 Updated seating plan saved to {output_filename}")
-		return
-
-	# Default Mode: organize all and store together
+	# Whether CLI or Default mode → write full output (for all OpenSpaces)
 	with open(output_filename, "w", encoding="utf-8") as outfile:
 		for open_space in open_spaces:
-			names = read_names_from_csv(open_space.guests_file)
-			open_space.organize(names)
+			# ✅ Only reorganize if we did NOT already rebalance this one
+			if not (args.add_colleague and args.openspace and open_space.name.strip().lower() == args.openspace.strip().lower()):
+				names = read_names_from_csv(open_space.guests_file)
+				open_space.organize(names)
 			open_space.store(outfile)
 
-	# Display the results in the console
+	# Display all OpenSpaces in the console
 	for open_space in open_spaces:
 		print(f"\n=== {open_space.name.upper()} ===")
 		open_space.display()
+
+	print(f"\nSeating plan saved to {output_filename}")
 
 
 if __name__ == "__main__":

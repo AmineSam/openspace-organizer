@@ -45,6 +45,7 @@ class Openspace:
 		Args:
 			names (list[str]): List of people to assign to seats.
 		"""
+		
 		random.shuffle(names)
 		index = 0
 		for table in self.tables:
@@ -139,13 +140,18 @@ class Openspace:
 			name (str): New colleague name (used only for logging).
 			config_filepath (str): Path to config.json to update the OpenSpace layout.
 		"""
-		# Reload all names from CSV (already appended in CLI)
+		# Reload fresh names from CSV (which now includes the new one)
 		names = read_names_from_csv(self.guests_file)
 
-		# Rebalance: decide number of tables and per-table sizes, then rebuild
+		# Rebalance all seats evenly based on total names
 		self._rebuild_tables_and_assign(names)
 
-		# Update config.json with the new table count and existing capacity + guest file
+		# ✅ Refresh local attributes after rebalance (important if changed)
+		self.number_of_tables = len(self.tables)
+		if self.tables:
+			self.table_capacity = len(self.tables[0].seats)
+
+		# ✅ Update config.json to reflect the new layout and guest file
 		update_config(
 			config_filepath=config_filepath,
 			openspace_name=self.name,
@@ -153,6 +159,7 @@ class Openspace:
 			seats=self.table_capacity,
 			guests_file=self.guests_file,
 		)
+	
 
 	def display(self) -> None:
 		"""

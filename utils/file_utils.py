@@ -1,7 +1,6 @@
 import os
 import csv
 import json
-from utils.openspace import Openspace
 
 
 def read_names_from_csv(filepath: str) -> list[str]:
@@ -26,27 +25,28 @@ def read_names_from_csv(filepath: str) -> list[str]:
 				names.append(row[0].strip())
 	return names
 
-
 def append_name_to_csv(filepath: str, name: str) -> None:
 	"""
 	Append a new colleague name to the CSV file for persistence.
+	Always ensures the new name starts on a new line, even if the file
+	does not end with a newline character.
 
 	Args:
 		filepath (str): Path to the CSV file.
 		name (str): New colleague name.
 	"""
-	# Create file if it doesn't exist
-	create_header = False
+	# Create the file if it doesn't exist
 	if not os.path.exists(filepath):
-		# If you want headers, set create_header=True and write one.
 		open(filepath, "a", encoding="utf-8").close()
 
+	# Always add a leading newline before writing the name
 	with open(filepath, mode="a", encoding="utf-8", newline="") as file:
-		writer = csv.writer(file)
-		writer.writerow([name])
+		file.write(f"\n{name}")
 
 
-def read_config(config_filepath: str) -> list[Openspace]:
+
+
+def read_config(config_filepath: str) :
 	"""
 	Read the room setup configuration from a JSON file and return a list of OpenSpace objects.
 
@@ -56,6 +56,7 @@ def read_config(config_filepath: str) -> list[Openspace]:
 	Returns:
 		list[Openspace]: A list of OpenSpace instances created from the config file.
 	"""
+	from utils.openspace import Openspace
 	if not os.path.exists(config_filepath):
 		raise FileNotFoundError(f"The file '{config_filepath}' does not exist.")
 

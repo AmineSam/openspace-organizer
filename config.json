@@ -1,0 +1,12 @@
+{
+  "OpenSpace Juniors": {
+    "Tables": 4,
+    "Seats": 6,
+    "Guests": "juniors.csv"
+  },
+  "OpenSpace Seniors": {
+    "Tables": 3,
+    "Seats": 4,
+    "Guests": "seniors.csv"
+  }
+}
