@@ -83,6 +83,47 @@ Each day, the program assigns everyone to a new seat across six tables with four
 
 <img width="673" height="652" alt="openspace_output" src="https://github.com/user-attachments/assets/6ebbc337-8536-465f-af61-6488939bd57a" />
 
+The file "output.csv" :
+
+===== OPEN SPACE ORGANIZATION =====
+
+Table 1:
+  Seat 1: Pierrick
+  Seat 2: Astha
+  Seat 3: Viktor
+  Seat 4: Frédéric
+
+Table 2:
+  Seat 1: Amine
+  Seat 2: Hamideh
+  Seat 3: Nancy
+  Seat 4: Welederufeal
+
+Table 3:
+  Seat 1: Faranges
+  Seat 2: Kristin
+  Seat 3: Aleksei
+  Seat 4: Tim
+
+Table 4:
+  Seat 1: Brigitta
+  Seat 2: Intan K.
+  Seat 3: Jens
+  Seat 4: Héloïse
+
+Table 5:
+  Seat 1: Živile
+  Seat 2: Michiel
+  Seat 3: Sandrine
+  Seat 4: Anna
+
+Table 6:
+  Seat 1: Bryan
+  Seat 2: Ena
+  Seat 3: Esra
+  Seat 4: Imran
+
+===================================
 
 ## ⏱️ Timeline
 
